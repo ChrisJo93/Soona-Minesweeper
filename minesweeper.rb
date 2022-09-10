@@ -6,31 +6,64 @@
 # might try # array.repeated_permutation(int).map{|i,j| "#{i}-#{j}"} to build coordinates
 # might try using next if row in item isn't white space, int, or * to avoid border
 
-
 class Board
     def self.transform(board)
-    
-        removeBorder(board).each do |rows|
-            rows.chars.each_with_index do |spaceInRow, index|
-                puts spaceInRow[0]
-                rowNum += 1
-                if (spaceInRow == "*")
-                    
-                    spaceInRow[index - 1] = "1" unless spaceInRow[index - 1].nil?
-                    # spaceInRow[index + 1] = "1"
-                    
-                    # puts spaceInRow[index - 1] = rowNum.to_s and spaceInRow[index + 1] = rowNum.to_s
-                end
-                
-            end
-        
-        end
 
-        puts board
-    end
+      workBoard = removeBorder(board)
+      
+      workBoard.each_with_index do |row, x|
+        puts "rows #{row.split('')}, #{x}"
+        row.split('').each_with_index do |column, y|
+             puts "columns #{column}, #{y}"
+             if (workBoard[x][y] == "*")
+                puts "found at #{x}#{y}"
+          end
+        end
+        #   column.split('')
+        #   puts "rows #{column}, #{y}"
+        # end
+        # row.to_a.each_with_index do |x, xindex|
+        #   puts "rows #{x}, #{xindex}"
+        # row.split('').each_with_index do |spaceInRowX, x|
+          # puts " this is row #{spaceInRowX}#{x}"
+          # spaceInRowX.each_with_index do |_spaceInRowY, y|
+            
+          #           puts "row at x #{_spaceInRowY}#{y}"
+          # end
+        end
+        #   
+        #     puts "this is xcoords #{row}#{x} "
+        #     puts "this is ycoords #{cell}#{y} "
+        #   end
+  
+        # rowItem = row.split('')
+      end
+  end
+
+# class Board
+#     def self.transform(board)
+    
+#         removeBorder(board).each do |rows|
+#             rows.chars.each_with_index do |spaceInRow, index|
+#                 puts spaceInRow[0]
+#                 rowNum += 1
+#                 if (spaceInRow == "*")
+                    
+#                     spaceInRow[index - 1] = "1" unless spaceInRow[index - 1].nil?
+#                     # spaceInRow[index + 1] = "1"
+                    
+#                     # puts spaceInRow[index - 1] = rowNum.to_s and spaceInRow[index + 1] = rowNum.to_s
+#                 end
+                
+#             end
+        
+#         end
+
+#         puts board
+#     end
 
    
-end
+# end
 
 def removeBorder(board)
     board.shift
