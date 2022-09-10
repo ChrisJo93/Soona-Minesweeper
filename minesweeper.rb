@@ -5,35 +5,33 @@
 
 # might try # array.repeated_permutation(int).map{|i,j| "#{i}-#{j}"} to build coordinates
 # might try using next if row in item isn't white space, int, or * to avoid border
-
 class Board
     def self.transform(board)
       
-      mineCoordinates = []
     puts board
       workBoard = removeBorder(board)
       workBoard.each_with_index do |row, x|
-        # puts "rows #{row.split('')}, #{x}"
+      
         row.split('').each_with_index do |column, y|
-          # puts "columns #{column}, #{y}"
-          
-          if (workBoard[x][y] == "*")
-            mineCount = 0
-            mineCoordinates.push([x,y])
-            workBoard[x + 1][y] = (mineCount += 1).to_s
-            workBoard[x][y + 1] = (mineCount += 1).to_s
-            workBoard[x - 1][y] = (mineCount + 1).to_s
-            workBoard[x][y - 1] = (mineCount + 1).to_s
   
+          if (workBoard[x][y] == "*")
+            
+            right = workBoard[x + 1][y].to_i
+            left = workBoard[x - 1][y].to_i
+            up = workBoard[x][y + 1].to_i
+            down = workBoard[x][y - 1].to_i
+            
+            workBoard[x + 1][y] = (right += 1).to_s
+            workBoard[x - 1][y] = (left += 1).to_s
+            workBoard[x][y + 1] = (up += 1).to_s
+            workBoard[x][y - 1] = (down += 1).to_s
+            
+    
           end
         end
         
         end
-      mineCoordinates.each do |mine|
-            puts "mine here, #{mine}"
-          end
           puts board
-       # [x1 - x2] > 1 || [y1 - y2] >1
   end
       end
   
