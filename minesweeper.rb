@@ -101,15 +101,13 @@
 class Board
     def self.transform(board)
 
-        found = board.dup
-
         board.each_with_index do |row, x|
             row.chars.each_with_index do |column, y|
                 
                 if column == ' '
-
+                    
                     count = 0
-
+                    
                     top = [board, (x - 1), y]
                     bottom = [board, (x + 1), y]
                     left = [board, x, (y - 1)]
@@ -137,22 +135,14 @@ class Board
                         count += 1 if mine?(bottom)
                         count += 1 if y > 0 && mine?(bottomLeft)
                     end
-    
-                    found[x][y] = count.to_s if count > 0
+                    board[x][y] = count.to_s if count > 0
                 end
-                found
-
-                    
-                puts found
             end
         end
-        puts found
+        board
         end
     end
 
     def mine?(coordinate)
         coordinate[0][coordinate[1]][coordinate[2]] == "*"
     end
-
-    Board.transform(['+------+', '| *  * |', '|  *   |', '|    * |', '|   * *|',
-        '| *  * |', '|      |', '+------+'])
